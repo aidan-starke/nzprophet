@@ -9,6 +9,7 @@ function setCrypto(state = {'name': '', 'price': 0, 'img': ''}, action) {
             state.name = action.name
             state.price = prices[action.name]
             state.img = images[action.name]
+            break
         default:
             return state
     }

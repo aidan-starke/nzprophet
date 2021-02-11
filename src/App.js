@@ -15,11 +15,11 @@ function App({ currentPage }) {
         <h1>Bradley's Prophet</h1>
       </Row>
 
-      {currentPage == 'Home' && <div className="App">
+      {currentPage === 'Home' && <div className="App">
         <Dropdown />
       </div>}
 
-      {currentPage != 'Home' && <CryptoCard />}
+      {currentPage !== 'Home' && <CryptoCard />}
     </Container>
   )
 }
