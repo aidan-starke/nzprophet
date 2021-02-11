@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './App.css'
 
-function App() {
+import { connect } from 'react-redux'
+
+import Dropdown from './components/Dropdown'
+import CryptoCard from './components/CryptoCard'
+
+import { Container, Row } from 'react-bootstrap'
+
+function App({ currentPage }) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Container>
+      <Row className="d-flex justify-content-center">
+        <h1>Bradley's Prophet</h1>
+      </Row>
+
+      {currentPage == 'Home' && <div className="App">
+        <Dropdown />
+      </div>}
+
+      {currentPage != 'Home' && <CryptoCard />}
+    </Container>
+  )
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    currentPage: state.currentPage
+  }
+}
+
+export default connect(mapStateToProps)(App)
