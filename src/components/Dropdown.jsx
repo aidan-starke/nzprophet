@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
-import { Container, Dropdown, DropdownButton, InputGroup, Row } from 'react-bootstrap'
+import { Dropdown, DropdownButton, InputGroup, Row } from 'react-bootstrap'
 
 import { connect } from 'react-redux'
 
 import { setName, changePage } from '../actions'
 
 const Calculator = ({ dispatch }) => {
-    const [currentCrypto, setCrypto] = useState('Select Cryptocurrency')
+    const [currentCrypto] = useState('Select Cryptocurrency')
 
     const cryptoCurrencies = ['ALGO', 'DOGE', 'ETH', 'XRP']
 
@@ -17,13 +17,13 @@ const Calculator = ({ dispatch }) => {
     }
 
     return (
-            <Row>
-                <InputGroup className="d-flex justify-content-center">
-                    <DropdownButton id="dropdown-basic-button" title={currentCrypto} display='block'>
-                        {cryptoCurrencies.map((crypto, i) => <Dropdown.Item key={i} onClick={evt => dropdownHandler(evt.target.innerHTML)}>{crypto}</Dropdown.Item>)}
-                    </DropdownButton>
-                </InputGroup>
-            </Row>
+        <Row>
+            <InputGroup className="d-flex justify-content-center">
+                <DropdownButton id="dropdown-basic-button" title={currentCrypto} display='block'>
+                    {cryptoCurrencies.map((crypto, i) => <Dropdown.Item key={i} onClick={evt => dropdownHandler(evt.target.innerHTML)}>{crypto}</Dropdown.Item>)}
+                </DropdownButton>
+            </InputGroup>
+        </Row>
     )
 }
 
