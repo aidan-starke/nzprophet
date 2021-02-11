@@ -12,7 +12,7 @@ function App({ currentPage }) {
   return (
     <Container>
       <Row className="d-flex justify-content-center">
-        <h1>Bradley's Prophet</h1>
+        <h1>NZ Prophet</h1>
       </Row>
 
       {currentPage === 'Home' && <div className="App">
