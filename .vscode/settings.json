@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/c8cff22b-c139-4cdf-abc7-c774baeb0ce1/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/nzprophet",
+    "appService.deploySubpath": "."
+}

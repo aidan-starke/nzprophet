@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 const CryptoCard = ({ crypto }) => {
     return (
         <>
+            {console.log(crypto)}
             <Row className="d-flex justify-content-center" >
                 <Button onClick={() => window.location.reload(false)}>Refresh</Button>
             </Row>
