@@ -15,7 +15,7 @@ const Navigation = ({ dispatch }) => {
     }
     return (
         <Navbar bg="light" expand="lg">
-            <Navbar.Brand href="#home">NZ Prophet</Navbar.Brand>
+            <Navbar.Brand id='Home' onClick={e => dropdownHandler(e)}>NZ Prophet</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
@@ -28,10 +28,6 @@ const Navigation = ({ dispatch }) => {
                         <NavDropdown.Item id='XRP' onClick={e => dropdownHandler(e)}>Ripple</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
-                {/* <Form inline>
-                    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                    <Button variant="outline-success">Search</Button>
-                </Form> */}
             </Navbar.Collapse>
         </Navbar>
     )
