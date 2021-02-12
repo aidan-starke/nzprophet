@@ -3,7 +3,7 @@ import './App.css'
 
 import { connect } from 'react-redux'
 
-import { Container } from 'react-bootstrap'
+import { Card, Container } from 'react-bootstrap'
 
 import Nav from './components/Nav'
 import Footer from './components/Footer'
@@ -13,13 +13,15 @@ import ProfitCalculator from './components/ProfitCalculator'
 function App({ currentPage }) {
   return (
     <Container>
-      <Nav />
+      <Card>
+        <Nav />
 
-      {currentPage === 'Home' && <div className="App"></div>}
+        {currentPage === 'Home' && <div className="App"></div>}
 
-      {currentPage !== 'Home' && <ProfitCalculator />}
+        {currentPage !== 'Home' && <ProfitCalculator />}
 
-      <Footer />
+        <Footer />
+      </Card>
     </Container>
   )
 }
