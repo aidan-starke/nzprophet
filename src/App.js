@@ -3,23 +3,20 @@ import './App.css'
 
 import { connect } from 'react-redux'
 
-import Dropdown from './components/Dropdown'
-import CryptoCard from './components/CryptoCard'
+import { Container } from 'react-bootstrap'
 
-import { Container, Row } from 'react-bootstrap'
+import Nav from './components/Nav'
+import ProfitCalculator from './components/ProfitCalculator'
+
 
 function App({ currentPage }) {
   return (
     <Container>
-      <Row className="d-flex justify-content-center">
-        <h1>NZ Prophet</h1>
-      </Row>
+      <Nav />
 
-      {currentPage === 'Home' && <div className="App">
-        <Dropdown />
-      </div>}
+      {currentPage === 'Home' && <div className="App"></div>}
 
-      {currentPage !== 'Home' && <CryptoCard />}
+      {currentPage !== 'Home' && <ProfitCalculator />}
     </Container>
   )
 }
