@@ -49,7 +49,7 @@ const CryptoCard = ({ crypto, dispatch }) => {
                     <Card.Body>
                         <Card.Title>{crypto.name}</Card.Title>
                         <Card.Text>
-                            You dropped ${crypto.invested} when {crypto.name} was ${crypto.price}.
+                            You dropped ${crypto.invested} when {crypto.name} was ${roundTo(crypto.price, 2)} (adjusted for transaction fees).
                             <br />
                             {!profitToggle && <>Enter current price:</>}
                         </Card.Text>
