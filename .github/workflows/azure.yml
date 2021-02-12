@@ -5,7 +5,7 @@ on:
 
 env:
   AZURE_WEBAPP_NAME: nzprophet   
-  AZURE_WEBAPP_PACKAGE_PATH: '/home/site/deployments/tools:/opt/Kudu/Scripts:/usr/bin:/usr/bin:/usr/local/bin:/usr/local/bin:/usr/local/bin:/usr/local/bin:/opt/dotnet/2.2:/usr/local/.rbenv/bin:/usr/local:/opt/oryx:/opt/nodejs/lts/bin:/opt/dotnet/lts:/opt/python/latest/bin:/opt/php/lts/bin:/opt/php-composer:/opt/yarn/stable/bin:/opt/hugo/lts:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/.dotnet/tools:/opt/nodejs/9/bin' 
+  AZURE_WEBAPP_PACKAGE_PATH: 'ftps://waws-prod-dm1-185.ftp.azurewebsites.windows.net/site/wwwroot' 
   NODE_VERSION: '12.18.3'        
 
 jobs:
