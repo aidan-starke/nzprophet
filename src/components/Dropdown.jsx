@@ -9,7 +9,7 @@ import { setName, changePage } from '../actions'
 const Calculator = ({ dispatch }) => {
     const [currentCrypto] = useState('Select Cryptocurrency')
 
-    const cryptoCurrencies = ['ALGO', 'DOGE', 'ETH', 'XRP']
+    const cryptoCurrencies = ['ADA', 'ALGO', 'DOGE', 'LTC', 'XRP']
 
     function dropdownHandler(name) {
         dispatch(setName(name))
