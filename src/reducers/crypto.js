@@ -1,6 +1,6 @@
 import { SET_CRYPTO } from '../actions'
 
-const prices = { 'ADA': 1.28, 'ALGO': 1.69, 'DOGE': 0.095857, 'LTC': 257.99, 'XRP': 0.722694}
+const prices = { 'ADA': 1.28, 'ALGO': 1.95558705, 'DOGE': 0.11262027, 'LTC': 291.61919957, 'XRP': 0.79500199}
 const invested = { 'ADA': 0,'ALGO': 200, 'DOGE': 200, 'LTC': 200, 'XRP': 400}
 const owned = {'ADA': 250, 'ALGO': 102.27108, 'DOGE': 1775.87926461, 'LTC': 0.6858259, 'XRP': 503.143395}
 const images = { 'ADA': './Cardano.png', 'ALGO': './Algorand.png', 'DOGE': './Dogecoin.png', 'LTC': './Litecoin.png', 'XRP': './Ripple.png'}
