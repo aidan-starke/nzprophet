@@ -4,7 +4,7 @@ import { Button, Card, Container, FormControl, FormGroup, Row } from 'react-boot
 
 import { connect } from 'react-redux'
 
-import { roundTo } from '../helpers/profitLogic'
+import { roundTo } from '../helpers'
 
 import { refresh } from '../actions'
 
@@ -49,7 +49,7 @@ const CryptoCard = ({ crypto, dispatch }) => {
                     <Card.Body>
                         <Card.Title>{crypto.name}</Card.Title>
                         <Card.Text>
-                            You dropped ${crypto.invested} when {crypto.name.toLowerCase()} was ${crypto.price}.
+                            You dropped ${crypto.invested} when {crypto.name} was ${crypto.price}.
                             <br />
                             {!profitToggle && <>Enter current price:</>}
                         </Card.Text>
