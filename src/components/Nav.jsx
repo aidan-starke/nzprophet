@@ -4,13 +4,13 @@ import { connect } from 'react-redux'
 
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap'
 
-import { changePage, setName } from '../actions'
+import { changePage, setCrypto } from '../actions'
 
 const Navigation = ({ dispatch }) => {
     function dropdownHandler(e) {
         e.preventDefault()
 
-        dispatch(setName(e.target.id))
+        dispatch(setCrypto(e.target.id))
         dispatch(changePage(e.target.id))
     }
     return (
