@@ -7,7 +7,7 @@ exports.up = function(knex) {
         table.string('crypto_id')
         table.foreign('crypto_id').references('cryptos.id')
         table.string('buy_price')
-        table.timestamp('created_at')
+        table.timestamp('investment')
       })
 };
 

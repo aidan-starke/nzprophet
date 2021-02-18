@@ -5,8 +5,8 @@ exports.up = function(knex) {
         table.string('username')
         table.string('email')
         table.string('password_hash')
-        // table.timestamp('reset_expires_at')
-        // table.string('reset_password_key')
+        table.timestamp('reset_expires_at')
+        table.string('reset_password_key')
       })
 };
 
