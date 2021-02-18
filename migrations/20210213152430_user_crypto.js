@@ -6,8 +6,8 @@ exports.up = function(knex) {
         table.foreign('user_id').references('users.id')
         table.string('crypto_id')
         table.foreign('crypto_id').references('cryptos.id')
-        table.string('buy_price')
-        table.timestamp('investment')
+        table.int('buy_price')
+        table.int('investment')
       })
 };
 
