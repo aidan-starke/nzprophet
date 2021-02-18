@@ -1,8 +1,9 @@
 export const SET_CRYPTO = 'SET_CRYPTO'
 export const CHANGE_PAGE = 'CHANGE_PAGE'
 export const REFRESH = 'REFRESH'
+export const SET_USER = 'SET_USER'
 
-export function setName(name) {
+export function setCrypto(name) {
     return {
         type: SET_CRYPTO,
         name
@@ -19,5 +20,12 @@ export function changePage(page) {
 export function refresh() {
     return {
         type: REFRESH
+    }
+}
+
+export function setUser(user) {
+    return {
+        type: SET_USER,
+        user
     }
 }
