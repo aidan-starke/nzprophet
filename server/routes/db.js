@@ -2,11 +2,14 @@ const express = require('express')
 
 const db = require('../db')
 
+const cors = require('cors')
+
 const router = express.Router()
 
-router.get('/:name', (req, res) => {
-    const { name } = req.query.params
-    console.log(req.query)
+router.use(cors())
+
+router.get('/crypto', (req, res) => {
+    const { name } = req.query
 
     db.getUsername(name)
         .then(username => {
@@ -19,6 +22,13 @@ router.get('/:name', (req, res) => {
                     res.send(viewData)
                 })
         })
+        .catch(err => console.log(err.message))
+})
+
+router.get('/users', (req, res) => {
+    db.getUsers()
+        .then(users => res.send(users))
+        .catch(err => console.log(err.message))
 })
 
 module.exports = router

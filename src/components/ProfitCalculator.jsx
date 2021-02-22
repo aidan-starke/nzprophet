@@ -4,59 +4,55 @@ import { connect } from 'react-redux'
 
 import { roundTo } from '../helpers'
 
-import { Card, Row } from 'react-bootstrap'
+import { CardDeck, Row } from 'react-bootstrap'
 
 import { getPrice } from '../api'
 
-const ProfitCalculator = ({ crypto }) => {
-    const [profit, setProfit] = useState(0)
-    const [profitPercentage, setPercentage] = useState(0)
-    const [hidden, toggle] = useState(true)
+import CryptoCard from './CryptoCard'
 
-    const { img, name, owned, price, value } = crypto
+const ProfitCalculator = ({ users }) => {
+    const [profits] = useState([])
 
     useEffect(() => {
-        function calculateProfit(currentPrice) {
-            alert(`Current price of ${name}: ${currentPrice}`)
-            const currentValue = roundTo(currentPrice * owned, 2)
+        users.data.forEach(crypto => {
+            const { buyPrice, investment, name } = crypto
 
-            const roundedProfit = roundTo(currentValue - value, 2)
-            setProfit(`$${roundedProfit}`)
+            getPrice(name)
+                .then(p => {
+                    var owned = roundTo(investment / buyPrice, 2)
+                    var currentValue = roundTo(p['NZD'] * owned, 2)
 
-            const roundedPercentage = Math.round(roundedProfit / value * 100)
-            setPercentage(`${roundedPercentage}%`)
+                    var profit = currentValue - investment
+                    var roundedProfit = roundTo(profit, 2)
 
-            toggle(false)
-        }
+                    var percentage = profit / investment
+                    var roundedPercentage = Math.round(percentage * 100)
 
-        getPrice(name)
-            .then(p => {
-                calculateProfit(p['NZD'])
-            })
-    }, [name, owned, value])
+                    profits.push({
+                        name,
+                        profit: roundedProfit,
+                        percentage: roundedPercentage
+                    })
+                })
+        })
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
-        <>
-            {!hidden && <Row className="d-flex justify-content-center cryptocard">
-                <Card style={{ width: '20rem' }}>
-                    <Card.Img variant="top" src={img} />
-                    <Card.Body>
-                        <Card.Title>{name}</Card.Title>
-                        <Card.Text>
-                            You invested ${value} when {name} was ${roundTo(price, 2)}.
-                            <br />
-                            You currently have {profit} profit ({profitPercentage} ROI). Press Home to refresh.
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
-            </Row>}
-        </>
+        <Row className="d-flex justify-content-center">
+            <CardDeck style={{ display: 'flex', flexDirection: 'row' }}>
+                {users.data.map((crypto, i) =>
+                    <CryptoCard profits={profits} crypto={crypto} key={i} />
+                )}
+            </CardDeck>
+        </Row>
     )
 }
 
 function mapStateToProps(state) {
     return {
-        crypto: state.crypto
+        users: state.users
     }
 }
 
