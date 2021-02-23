@@ -7,7 +7,7 @@ An app to give an up to date record of profit on cryptocurrencies held
  - [x] Add deployment to GitHub actions
  - [x] Projected profit calculator
  - [x] Implement cryptocompare api for live profit report
- - [ ] Create databases for original purchase prices
+ - [x] Create databases for original purchase prices
  - [ ] Add Auth and genericize code
  - [ ] Test
  - [ ] Connect to Wallet (Exodus)?
