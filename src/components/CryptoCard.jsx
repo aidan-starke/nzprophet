@@ -2,31 +2,25 @@ import React from 'react'
 
 import { connect } from 'react-redux'
 
-import { Card } from 'react-bootstrap'
+import { CardDeck, Row } from 'react-bootstrap'
 
-import { roundTo } from '../helpers'
+import Profit from './Profit'
 
-function CryptoCard({ crypto, key, data }) {
+const CryptoCard = ({ users }) => {
     return (
-        <>
-            <Card key={key} style={{ flex: 1, width: '15rem' }}>
-                <Card.Img variant="top" src={crypto.src} />
-                <Card.Body>
-                    <Card.Title>{crypto.name}</Card.Title>
-                    <Card.Text>
-                        You invested ${crypto.investment} when {crypto.name} was ${roundTo(crypto.buyPrice, 2)}.
-                        <br />
-                        {/* You currently have ${data.profit} profit ({data.percentage}% ROI).) */}
-                    </Card.Text>
-                </Card.Body>
-            </Card>
-        </>
+        <Row className="d-flex justify-content-center">
+            <CardDeck style={{ display: 'flex', flexDirection: 'row' }}>
+                {users.data.map((crypto, i) =>
+                    <Profit crypto={crypto} key={i} />
+                )}
+            </CardDeck>
+        </Row>
     )
 }
 
 function mapStateToProps(state) {
     return {
-        data: state.users.cryptoData
+        users: state.users
     }
 }
 

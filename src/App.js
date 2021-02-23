@@ -9,7 +9,7 @@ import { Card, Container } from 'react-bootstrap'
 
 import Nav from './components/Nav'
 import Footer from './components/Footer'
-import ProfitCalculator from './components/ProfitCalculator'
+import CryptoCard from './components/CryptoCard'
 
 
 function App({ currentPage, user }) {
@@ -18,7 +18,7 @@ function App({ currentPage, user }) {
       <Card>
         <Nav />
 
-        {currentPage === user && <ProfitCalculator />}
+        {currentPage === user && <CryptoCard />}
 
         <Footer />
       </Card>
