@@ -1,14 +1,10 @@
 const express = require('express')
 
-const db = require('../db')
-
-const cors = require('cors')
-
 const router = express.Router()
 
-router.use(cors())
+const db = require('../db')
 
-router.get('/crypto', (req, res) => {
+router.get('/', (req, res) => {
     const { name } = req.query
 
     db.getUsername(name)
@@ -22,12 +18,6 @@ router.get('/crypto', (req, res) => {
                     res.send(viewData)
                 })
         })
-        .catch(err => console.log(err.message))
-})
-
-router.get('/users', (req, res) => {
-    db.getUsers()
-        .then(users => res.send(users))
         .catch(err => console.log(err.message))
 })
 
