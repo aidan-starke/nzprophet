@@ -2,35 +2,30 @@ import React from 'react'
 
 import { connect } from 'react-redux'
 
-import { Nav, Navbar, NavDropdown } from 'react-bootstrap'
+import { Nav, Navbar } from 'react-bootstrap'
 
-import { changePage, setName } from '../actions'
+import { changePage } from '../actions'
+
+import UserDropdown from './UserDropdown'
 
 const Navigation = ({ dispatch }) => {
-    function dropdownHandler(e) {
-        e.preventDefault()
-
-        dispatch(setName(e.target.id))
-        dispatch(changePage(e.target.id))
-    }
     return (
         <Navbar bg="light" expand="lg">
-            <Navbar.Brand id='Home' onClick={e => dropdownHandler(e)}>NZ Prophet</Navbar.Brand>
+            <Navbar.Brand id='Home' onClick={e => dispatch(changePage(e.target.id))}>NZ Prophet</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link id='Home' onClick={e => dropdownHandler(e)}>Home</Nav.Link>
-                    <NavDropdown title="Currencies" id="basic-nav-dropdown">
-                        <NavDropdown.Item id='ALGO' onClick={e => dropdownHandler(e)}>Algorand</NavDropdown.Item>
-                        <NavDropdown.Item id='ADA' onClick={e => dropdownHandler(e)}>Cardano</NavDropdown.Item>
-                        <NavDropdown.Item id='DOGE' onClick={e => dropdownHandler(e)}>Dogecoin</NavDropdown.Item>
-                        <NavDropdown.Item id='LTC' onClick={e => dropdownHandler(e)}>Litecoin</NavDropdown.Item>
-                        <NavDropdown.Item id='XRP' onClick={e => dropdownHandler(e)}>Ripple</NavDropdown.Item>
-                    </NavDropdown>
+                    <UserDropdown />
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
     )
 }
 
-export default connect()(Navigation)
+function mapStateToProps(state) {
+    return {
+        users: state.users
+    }
+}
+
+export default connect(mapStateToProps)(Navigation)

@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux'
 
-import crypto from './crypto'
 import currentPage from './currentPage'
+import users from './users'
+import crypto from './crypto'
 
 const reducers = combineReducers({
-    crypto,
-    currentPage
+    currentPage,
+    users,
+    crypto
 })
 
 export default reducers

@@ -7,10 +7,12 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.21.1",
     "babel-loader": "^8.2.2",
     "bootstrap": "^4.6.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "knex": "^0.21.17",
+    "npm-install-peers": "^1.2.2",
     "path": "^0.12.7",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.3",
@@ -25,7 +27,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint \"**/*.js\" \"**/*.jsx\""
+    "lint": "eslint \"**/*.js\" \"**/*.jsx\"",
+    "debug": "nodemon server --ext js,jsx",
+    "serve": "react-scripts build && serve -s build"
   },
   "eslintConfig": {
     "extends": [
@@ -48,6 +52,8 @@
   },
   "devDependencies": {
     "eslint": "^7.19.0",
-    "superagent": "^6.1.0"
-  }
+    "knex": "^0.21.17",
+    "sqlite3": "5.0.0"
+  },
+  "proxy": "https://localhost:5000"
 }
