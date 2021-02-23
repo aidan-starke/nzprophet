@@ -55,5 +55,5 @@
     "knex": "^0.21.17",
     "sqlite3": "5.0.0"
   },
-  "proxy" : "https://localhost:5000"
+  "proxy": "https://localhost:5000"
 }
