@@ -10,13 +10,15 @@ function Profit({ crypto, key }) {
     const [profitData, setProfitData] = useState({})
     const [mounted, toggle] = useState(false)
 
+    const { name, investment, coinsOwned, src } = crypto
+
     useEffect(() => {
         toggle(false)
-        const { name, investment, buyPrice } = crypto
+
         getPrice(name)
             .then(p => {
-                var owned = roundTo(investment / buyPrice, 2)
-                var currentValue = roundTo(p['NZD'] * owned, 2)
+                var currentValue = p['NZD'] * coinsOwned
+                var roundedValue = roundTo(currentValue, 2)
 
                 var profit = currentValue - investment
                 var roundedProfit = roundTo(profit, 2)
@@ -26,7 +28,8 @@ function Profit({ crypto, key }) {
 
                 setProfitData({
                     profit: roundedProfit,
-                    percentage: roundedPercentage
+                    percentage: roundedPercentage,
+                    value: roundedValue
                 })
 
                 toggle(true)
@@ -36,14 +39,16 @@ function Profit({ crypto, key }) {
 
     return (
         <Card key={key} style={{ flex: 1, width: '15rem' }}>
-            <Card.Img variant="top" src={crypto.src} />
+            <Card.Img variant="top" src={src} />
             <Card.Body>
-                <Card.Title>{crypto.name}</Card.Title>
+                <Card.Title>{name}</Card.Title>
                 {!mounted && <Card.Text>Loading...</Card.Text>}
                 {mounted && <Card.Text>
-                    You invested ${crypto.investment} when {crypto.name} was ${roundTo(crypto.buyPrice, 2)}.
+                    You bought {coinsOwned} {name} for ${investment}.
                     <br />
-                    You currently have ${profitData.profit} profit ({profitData.percentage}% ROI)
+                    Your coins are now worth ${profitData.value}.
+                    <br />
+                    (${profitData.profit}, {profitData.percentage}% ROI)
                 </Card.Text>}
             </Card.Body>
         </Card>
