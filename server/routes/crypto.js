@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
                         username,
                         data
                     }
-                    res.sendStatus(viewData)
+                    res.send(viewData)
                 })
         })
         .catch(err => console.log(err.message))
