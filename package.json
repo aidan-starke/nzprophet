@@ -29,7 +29,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint \"**/*.js\" \"**/*.jsx\"",
     "debug": "nodemon server --ext js,jsx",
-    "serve": "react-scripts build && serve -s build"
+    "serve": "react-scripts build && serve -s build",
+    "refreshDb": "knex migrate:rollback && knex migrate:latest && knex seed:run"
   },
   "eslintConfig": {
     "extends": [
