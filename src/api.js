@@ -28,3 +28,15 @@ export function getPrice(crypto) {
         .then(res => res.data)
         .catch(err => console.log(err.message))
 }
+
+export function addTrade(data) {
+    return axios
+        .put(`${baseUrl}/crypto/trade`, data)
+        .catch(err => console.log(err.message))
+}
+
+export function addTradeNewCoin(data) {
+    return axios
+        .post(`${baseUrl}/crypto/trade/new`, data)
+        .catch(err => console.log(err.message))
+}

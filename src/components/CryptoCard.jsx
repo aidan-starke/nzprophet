@@ -2,19 +2,23 @@ import React from 'react'
 
 import { connect } from 'react-redux'
 
-import { CardDeck, Row } from 'react-bootstrap'
+import { CardDeck } from 'react-bootstrap'
 
 import Profit from './Profit'
 
+import TransactionButtons from './TransactionButtons'
+
 const CryptoCard = ({ users }) => {
     return (
-        <Row className="d-flex justify-content-center">
+        <>
             <CardDeck style={{ display: 'flex', flexDirection: 'row' }}>
                 {users.data.map((crypto, i) =>
                     <Profit crypto={crypto} key={i} />
                 )}
             </CardDeck>
-        </Row>
+            <br />
+            <TransactionButtons />
+        </>
     )
 }
 
