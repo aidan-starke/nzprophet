@@ -20,12 +20,11 @@
     "react-redux": "^7.2.2",
     "react-scripts": "4.0.2",
     "redux": "^4.0.5",
-    "web-vitals": "^1.0.1",
-    "yarn-run-all": "^3.1.1"
+    "web-vitals": "^1.0.1"
   },
   "scripts": {
     "start": "run-p server client",
-    "build": "react-scripts build",
+    "build": "run-p server client",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint \"**/*.js\" \"**/*.jsx\"",
