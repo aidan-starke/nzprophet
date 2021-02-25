@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "run-p server client",
-    "build": "react-scripts build",
+    "build": "run-p server client",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint \"**/*.js\" \"**/*.jsx\"",
