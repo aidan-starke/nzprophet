@@ -5,21 +5,23 @@ import React from 'react'
 
 import { connect } from 'react-redux'
 
-import { Card, Container } from 'react-bootstrap'
+import { Card, Container, Row } from 'react-bootstrap'
 
 import Nav from './components/Nav'
 import Footer from './components/Footer'
 import CryptoCard from './components/CryptoCard'
+import TradeForm from './components/TradeForm'
 
-
-function App({ currentPage, user }) {
+function App({ currentPage, users }) {
   return (
     <Container>
       <Card>
         <Nav />
+        <Row className="d-flex justify-content-center">
+          {currentPage === users.user && <CryptoCard />}
 
-        {currentPage === user && <CryptoCard />}
-
+          {currentPage === 'trade' && <TradeForm user={users.user} usersCrypto={users.data} />}
+        </Row>
         <Footer />
       </Card>
     </Container>
@@ -29,7 +31,7 @@ function App({ currentPage, user }) {
 function mapStateToProps(state) {
   return {
     currentPage: state.currentPage,
-    user: state.users.user
+    users: state.users
   }
 }
 
