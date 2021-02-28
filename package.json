@@ -25,13 +25,14 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "run-p server client",
-    "build": "run-p server client",
+    "start": "react-scripts start",
+    "dev": "run-p dev:server dev:client",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint \"**/*.js\" \"**/*.jsx\"",
-    "server": "nodemon server --ext js,jsx",
-    "client": "react-scripts build && serve -s build"
+    "dev:server": "nodemon server --ext js,jsx",
+    "dev:client": "react-scripts build && serve -s build"
   },
   "eslintConfig": {
     "extends": [
