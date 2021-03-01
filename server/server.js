@@ -17,7 +17,7 @@ server.use('/api/v1/crypto', crypto)
 if (process.env.NODE_ENV === 'production') {
     server.use(express.static(path.join(__dirname, 'build')));
     server.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname + 'build/index.html'));
+        res.sendFile(path.join(__dirname, 'build', 'index.html'));
     })
 }
 
