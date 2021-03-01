@@ -7,11 +7,11 @@
   },
   "scripts": {    
     "src-install": "npm install --prefix src",
-    "start": "knex migrate:rollback && knex migrate:latest && knex seed:run && node server.js",
+    "start": "node server.js",
     "server": "nodemon server.js",
     "src": "npm start --prefix src",
     "dev": "concurrently \"npm run server\" \"npm run src\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix src && npm run build --prefix src"  
+    "postinstall": "knex migrate:rollback && knex migrate:latest && knex seed:run"
   },
   "dependencies": {
     "axios": "^0.21.1",
