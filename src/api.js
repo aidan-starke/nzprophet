@@ -1,17 +1,17 @@
 import axios from 'axios'
 
-let baseUrl = 'https://nzprophet.herokuapp.com'
+const baseUrl = 'http://localhost:3000/api/v1'
 
 export function getUsers() {
     return axios
-        .get(`${baseUrl}/api/v1/users`)
+        .get(`${baseUrl}/users`)
         .then(res => res.data)
         .catch(err => console.log(err.message))
 }
 
 export function getCrypto(name) {
     return axios
-        .get(`${baseUrl}/api/v1/crypto`, {
+        .get(`${baseUrl}/crypto`, {
             params: { name }
         })
         .then(res => res.data)
@@ -29,12 +29,12 @@ export function getPrice(crypto) {
 
 export function addTrade(data) {
     return axios
-        .put(`${baseUrl}/api/v1/crypto/trade`, data)
+        .put(`${baseUrl}/crypto/trade`, data)
         .catch(err => console.log(err.message))
 }
 
 export function addTradeNewCoin(data) {
     return axios
-        .post(`${baseUrl}/api/v1/crypto/trade/new`, data)
+        .post(`${baseUrl}/crypto/trade/new`, data)
         .catch(err => console.log(err.message))
 }
