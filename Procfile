@@ -1,1 +1,1 @@
-web: node nzprophet-backend/server.js
+web: node nzprophet-backend/server/server.js
