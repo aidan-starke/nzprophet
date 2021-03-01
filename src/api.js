@@ -2,7 +2,7 @@ import axios from 'axios'
 import dotenv from 'dotenv'
 dotenv.config()
 
-const baseUrl = 'http://localhost:3000/api/v1'
+const baseUrl = '/api/v1'
 
 export function getUsers() {
     return axios
