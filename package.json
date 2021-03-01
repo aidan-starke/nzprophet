@@ -7,11 +7,10 @@
     "yarn": "1.22.10"
   },
   "scripts": {
-    "start": "node server",
+    "start": "knex migrate:rollback && knex migrate:latest && knex seed:run && node server",
     "server": "nodemon server.js",
     "src": "npm start --prefix src",
-    "dev": "concurrently \"npm run server\" \"npm run src\"",
-    "postinstall": "knex migrate:rollback && knex migrate:latest && knex seed:run"
+    "dev": "concurrently \"npm run server\" \"npm run src\""
   },
   "dependencies": {
     "axios": "^0.21.1",
