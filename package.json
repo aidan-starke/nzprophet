@@ -7,10 +7,9 @@
     "yarn": "1.22.10"
   },
   "scripts": {
+    "start": "react-scripts start",
     "build": "react-scripts build",
-    "dev:client": "react-scripts start",
-    "dev:server": "nodemon server",
-    "dev": "concurrently \"yarn run dev:server\" \"yarn run dev:client\""
+    "lint": "eslint \"**/*.js\" \"**/*.jsx\""
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -49,9 +48,7 @@
     ]
   },
   "devDependencies": {
-    "concurrently": "^6.0.0",
     "eslint": "^7.19.0",
-    "nodemon": "^2.0.7",
     "sqlite3": "^5.0.2"
   }
 }
