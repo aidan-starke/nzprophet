@@ -7,10 +7,10 @@
     "yarn": "1.22.10"
   },
   "scripts": {
-    "start": "node server",
+    "start": "serve -s build",
     "build": "react-scripts build",
     "dev:client": "react-scripts start",
-    "dev:server": "nodemon server.js",
+    "dev:server": "nodemon server",
     "dev": "concurrently \"yarn run dev:server\" \"yarn run dev:client\""
   },
   "dependencies": {
