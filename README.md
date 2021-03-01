@@ -3,11 +3,10 @@ An app to give an up to date record of profit on cryptocurrencies held
 
 ### Todo
  - [x] Linting
- - [x] Deploy to Azure
- - [x] Add deployment to GitHub actions
- - [x] Projected profit calculator
- - [x] Implement cryptocompare api for live profit report
  - [x] Create databases for original purchase prices
- - [ ] Add Auth and genericize code
+ - [x] Implement cryptocompare api for live profit report
+ - [x] Profit calculator
+ - [x] Deploy to Heroku
  - [ ] Test
+ - [ ] Add Auth and genericize code
  - [ ] Connect to Wallet (Exodus)?
