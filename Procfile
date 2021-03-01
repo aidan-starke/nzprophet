@@ -1,1 +1,1 @@
-web: node nzprophet-backend/server
+web: npm start
