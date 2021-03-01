@@ -36,7 +36,6 @@
     "lint": "eslint \"**/*.js\" \"**/*.jsx\"",
     "dev:server": "nodemon server --ext js,jsx",
     "dev:client": "react-scripts build && serve -s build",
-    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client",
     "postinstall": "knex migrate:latest && knex seed:run"
   },
   "eslintConfig": {
