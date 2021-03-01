@@ -9,11 +9,9 @@ const cors = require('cors')
 
 server.use(cors())
 server.use(express.json())
+
 if (process.env.NODE_ENV === 'development')
     server.use(express.static(path.join(__dirname, '../public')))
-
-server.use('/api/v1/users', users)
-server.use('/api/v1/crypto', crypto)
 
 if (process.env.NODE_ENV === 'production') {
     server.use(express.static(path.join(__dirname, '../build')))
@@ -21,5 +19,8 @@ if (process.env.NODE_ENV === 'production') {
         res.sendFile(path.join(__dirname, '../build', 'index.html'))
     })
 }
+server.use('/api/v1/users', users)
+server.use('/api/v1/crypto', crypto)
+
 
 module.exports = server
