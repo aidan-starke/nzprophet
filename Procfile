@@ -1,1 +1,1 @@
-web: npm start
+web: cd nzprophet-backend && npm start
