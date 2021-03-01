@@ -26,15 +26,14 @@
     "redux": "^4.0.5"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts build",
     "dev": "run-p dev:server dev:client",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint \"**/*.js\" \"**/*.jsx\"",
     "dev:server": "nodemon server --ext js,jsx",
-    "dev:client": "react-scripts build && serve -s build",
-    "postinstall": "knex migrate:latest && knex seed:run"
+    "dev:client": "react-scripts build && serve -s build"
   },
   "eslintConfig": {
     "extends": [
