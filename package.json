@@ -7,7 +7,7 @@
     "yarn": "1.22.10"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "node server",
     "server": "nodemon server.js",
     "src": "npm start --prefix src",
     "dev": "concurrently \"npm run server\" \"npm run src\"",
