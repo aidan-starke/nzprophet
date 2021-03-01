@@ -22,7 +22,7 @@
     "redux": "^4.0.5"
   },
   "scripts": {
-    "start": "react-scripts build",
+    "start": "react-scripts start",
     "dev": "run-p dev:server dev:client",
     "build": "react-scripts build",
     "test": "react-scripts test",
