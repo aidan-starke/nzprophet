@@ -1,14 +1,26 @@
 const { createProxyMiddleware } = require('http-proxy-middleware')
-const production = 'https://nzprophet.herokuapp.com/'
-const development = 'http://localhost:5000/'
-const url = (process.env.NODE_ENV ? production : development)
+require('dotenv').config()
 
-module.exports = function (app) {
-    app.use(
-        '/api',
-        createProxyMiddleware({
-            target: url,
-            changeOrigin: true,
-        })
-    )
+if (process.env.NODE_ENV === 'development') {
+    module.exports = function (app) {
+        app.use(
+            '/api',
+            createProxyMiddleware({
+                target: 'http://localhost:5000/',
+                changeOrigin: true,
+            })
+        )
+    }
+}
+
+if (process.env.NODE_ENV === 'production') {
+    module.exports = function (app) {
+        app.use(
+            '/api',
+            createProxyMiddleware({
+                target: 'https://nzprophet.herokuapp.com/',
+                changeOrigin: true,
+            })
+        )
+    }
 }

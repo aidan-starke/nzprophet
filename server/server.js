@@ -19,6 +19,7 @@ if (process.env.NODE_ENV === 'production') {
         res.sendFile(path.join(__dirname, '../build', 'index.html'))
     })
 }
+
 server.use('/api/v1/users', users)
 server.use('/api/v1/crypto', crypto)
 

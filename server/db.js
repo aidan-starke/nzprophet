@@ -1,5 +1,6 @@
 const knex = require('knex')
-const config = require('../knexfile').development
+require('dotenv').config()
+const config = require('../knexfile')[process.env.NODE_ENV]
 const database = knex(config)
 
 function getUsers(db = database) {

@@ -2,9 +2,13 @@ import axios from 'axios'
 import dotenv from 'dotenv'
 dotenv.config()
 
-const production = 'https://nzprophet.herokuapp.com/'
-const development = 'http://localhost:3000/'
-const baseUrl = (process.env.NODE_ENV ? production : development)
+let baseUrl
+
+if (process.env.NODE_ENV === 'development')
+    baseUrl = 'http://localhost:3000'
+
+if (process.env.NODE_ENV === 'production')
+    baseUrl = 'https://nzprophet.herokuapp.com'
 
 export function getUsers() {
     return axios
