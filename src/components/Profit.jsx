@@ -6,7 +6,7 @@ import { getPrice } from '../api'
 
 import { roundTo } from '../helpers'
 
-function Profit({ crypto, key }) {
+function Profit({ crypto }) {
     const [profitData, setProfitData] = useState({})
     const [mounted, toggle] = useState(false)
 
@@ -38,7 +38,7 @@ function Profit({ crypto, key }) {
     }, [])
 
     return (
-        <Card key={key} style={{ flex: 1, width: '15rem' }}>
+        <Card style={{ flex: 1, width: '15rem' }}>
             <Card.Img variant="top" src={src} />
             <Card.Body>
                 <Card.Title>{name}</Card.Title>
