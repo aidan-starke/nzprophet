@@ -7,7 +7,6 @@
     "yarn": "1.22.10"
   },
   "scripts": {
-    "start": "knex migrate:rollback && knex migrate:latest && knex seed:run && serve -s build",
     "build": "react-scripts build",
     "dev:client": "react-scripts start",
     "dev:server": "nodemon server",
@@ -28,8 +27,7 @@
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",
     "react-scripts": "4.0.2",
-    "redux": "^4.0.5",
-    "serve": "^11.3.2"
+    "redux": "^4.0.5"
   },
   "eslintConfig": {
     "extends": [

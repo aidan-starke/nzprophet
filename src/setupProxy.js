@@ -12,3 +12,15 @@ if (process.env.NODE_ENV === 'development') {
         )
     }
 }
+
+if (process.env.NODE_ENV === 'production') {
+    module.exports = function (app) {
+        app.use(
+            '/api',
+            createProxyMiddleware({
+                target: 'https://nzprophet-backend.herokuapp.com/',
+                changeOrigin: true,
+            })
+        )
+    }
+}
