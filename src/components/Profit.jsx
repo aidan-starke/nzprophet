@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react'
 
+import { connect } from 'react-redux'
+
 import { Card } from 'react-bootstrap'
 
 import { getPrice } from '../api'
 
 import { roundTo } from '../helpers'
 
-function Profit({ crypto }) {
+import { viewTransactions, changePage } from '../actions'
+
+function Profit({ crypto, dispatch }) {
     const [profitData, setProfitData] = useState({})
     const [mounted, toggle] = useState(false)
 
@@ -37,22 +41,37 @@ function Profit({ crypto }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    function linkHandler(e) {
+        e.preventDefault()
+
+        dispatch(viewTransactions(name))
+        dispatch(changePage('transactions'))
+    }
+
     return (
         <Card style={{ flex: 1, width: '15rem' }}>
             <Card.Img variant="top" src={src} />
             <Card.Body>
                 <Card.Title>{name}</Card.Title>
                 {!mounted && <Card.Text>Loading...</Card.Text>}
-                {mounted && <Card.Text>
-                    You bought {coinsOwned} {name} for ${investment}.
-                    <br />
-                    Your coins are now worth ${profitData.value}.
-                    <br />
-                    (${profitData.profit}, {profitData.percentage}% ROI)
-                </Card.Text>}
+                {mounted && <>
+                    <Card.Body>
+                        You originally bought {coinsOwned} {name} for ${investment}.
+                    </Card.Body>
+                    <Card.Body>
+                        Your coins are currently worth ${profitData.value}.
+                    </Card.Body>
+                    <Card.Body>
+                        (${profitData.profit}, {profitData.percentage}% ROI)
+                    </Card.Body>
+                    <Card.Body>
+                        <Card.Link onClick={e => linkHandler(e)}>Transaction History</Card.Link>
+                    </Card.Body>
+                </>}
             </Card.Body>
         </Card>
     )
 }
 
-export default Profit
+export default connect()(Profit)
+

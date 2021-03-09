@@ -4,6 +4,7 @@ export const SET_USERS = 'SET_USERS'
 export const SET_USER = 'SET_USER'
 export const SET_USER_DATA = 'SET_USER_DATA'
 export const SET_PROFIT_DATA = 'SET_PROFIT_DATA'
+export const LOAD_TRANSACTIONS = 'LOAD_TRANSACTIONS'
 
 export function changePage(page) {
     return {
@@ -44,5 +45,12 @@ export function setProfitData(data) {
     return {
         type: SET_PROFIT_DATA,
         data
+    }
+}
+
+export function viewTransactions(crypto) {
+    return {
+        type: LOAD_TRANSACTIONS,
+        crypto
     }
 }

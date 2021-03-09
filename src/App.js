@@ -11,6 +11,7 @@ import Nav from './components/Nav'
 import Footer from './components/Footer'
 import CryptoCard from './components/CryptoCard'
 import TradeForm from './components/TradeForm'
+import Transactions from './components/Transactions'
 
 function App({ currentPage, users }) {
   return (
@@ -21,6 +22,8 @@ function App({ currentPage, users }) {
           {currentPage === users.user && <CryptoCard />}
 
           {currentPage === 'trade' && <TradeForm user={users.user} usersCrypto={users.data} />}
+
+          {currentPage === 'transactions' && <Transactions />}
         </Row>
         <Footer />
       </Card>

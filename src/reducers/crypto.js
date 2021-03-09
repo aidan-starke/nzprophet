@@ -1,10 +1,12 @@
-import { SET_PROFIT_DATA } from '../actions'
+import { SET_PROFIT_DATA, LOAD_TRANSACTIONS } from '../actions'
 
-function cryptoReducer(state = { profitData: {} }, action) {
+function cryptoReducer(state = { profitData: {}, transactions: '' }, action) {
     switch (action.type) {
         case SET_PROFIT_DATA:
             state.profitData = action.data
-            console.log(state)
+            return state
+        case LOAD_TRANSACTIONS:
+            state.transactions = action.crypto
             return state
         default:
             return state
