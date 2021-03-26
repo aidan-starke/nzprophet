@@ -1,4 +1,4 @@
-import { SET_USERS, SET_USER, SET_USER_DATA } from '../actions'
+import { SET_USERS, SET_USER } from '../actions'
 
 function userReducer(state = { users: [], user: '', username: '', data: {} }, action) {
     switch (action.type) {
@@ -9,10 +9,6 @@ function userReducer(state = { users: [], user: '', username: '', data: {} }, ac
             return state
         case SET_USER:
             state.user = action.user
-            return state
-        case SET_USER_DATA:
-            state.username = action.username
-            state.data = action.data
             return state
         default:
             return state
