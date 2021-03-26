@@ -1,6 +1,8 @@
 # Prophet
 An app to give an up to date record of profit on cryptocurrencies held
 
+https://nzprophet.herokuapp.com/
+
 ### Todo
  - [x] Linting
  - [x] Create databases for original purchase prices
