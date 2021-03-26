@@ -1,21 +1,42 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { connect } from 'react-redux'
 
-import { Card } from 'react-bootstrap'
+import { CardDeck } from 'react-bootstrap'
 
-function Transactions({ crypto }) {
-    const { transactions } = crypto
+import { getTrades } from '../api'
+
+import Transaction from './Transaction'
+
+function Transactions({ crypto, users }) {
+    const [transactionData, setTransactionData] = useState([])
+    const [mounted, toggle] = useState(false)
+
+    const { currentCrypto } = crypto
+    const { user } = users
+
+    useEffect(() => {
+        getTrades(user, currentCrypto)
+            .then(data => {
+                setTransactionData(data)
+                toggle(true)
+            })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
     return (
-        <Card>
-            <Card.Text>{transactions}</Card.Text>
-        </Card>
+        <CardDeck style={{ display: 'flex', flexDirection: 'row' }}>
+            {mounted && transactionData.map((data, i) =>
+                <Transaction transactionData={data} key={i} />
+            )}
+        </CardDeck>
     )
 }
 
 function MapStateToProps(state) {
     return {
-        crypto: state.crypto
+        crypto: state.crypto,
+        users: state.users
     }
 }
 
