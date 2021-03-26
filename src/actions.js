@@ -2,7 +2,7 @@ export const CHANGE_PAGE = 'CHANGE_PAGE'
 export const REFRESH = 'REFRESH'
 export const SET_USERS = 'SET_USERS'
 export const SET_USER = 'SET_USER'
-export const SET_USER_DATA = 'SET_USER_DATA'
+export const SET_USERS_CRYPTO = 'SET_USERS_CRYPTO'
 export const SET_PROFIT_DATA = 'SET_PROFIT_DATA'
 export const LOAD_TRANSACTIONS = 'LOAD_TRANSACTIONS'
 
@@ -33,9 +33,9 @@ export function setUser(user) {
     }
 }
 
-export function setUserData({ username, data }) {
+export function setUsersCrypto({ username, data }) {
     return {
-        type: SET_USER_DATA,
+        type: SET_USERS_CRYPTO,
         username: username[0].username,
         data
     }
