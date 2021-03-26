@@ -2,9 +2,13 @@ import React, { useState } from 'react'
 
 import { Card, Button, Form } from 'react-bootstrap'
 
-import { addTrade, addTradeNewCoin, getPrice } from '../api'
+import { connect } from 'react-redux'
 
-const TradeForm = ({ user, usersCrypto }) => {
+import { getPrice, addTrade } from '../api'
+
+import { refresh, changePage } from '../actions'
+
+const TradeForm = ({ user, usersCrypto, dispatch }) => {
     const [cryptoSent, selectCryptoSent] = useState('')
     const [coinsSent, setCoinsSent] = useState('')
     const [cryptoReceived, selectCryptoReceived] = useState('')
@@ -14,14 +18,20 @@ const TradeForm = ({ user, usersCrypto }) => {
     function submitTrade(e) {
         e.preventDefault()
 
-        const coinsSentValue = getPrice(cryptoSent) * coinsSent
-        const coinsReceivedValue = getPrice(cryptoReceived) * coinsReceived
+        getPrice(cryptoSent)
+            .then(p => {
+                var coinsSentValue = p['NZD'] * coinsSent
+                getPrice(cryptoReceived)
+                    .then(p => {
+                        var coinsReceivedValue = p['NZD'] * coinsReceived
+                        const tradeData = { user, cryptoSent, coinsSent, cryptoReceived, coinsReceived, coinsSentValue, coinsReceivedValue }
 
-        const tradeData = { user, cryptoSent, coinsSent, cryptoReceived, coinsReceived, coinsSentValue, coinsReceivedValue }
+                        addTrade(tradeData)
 
-        if (other) addTradeNewCoin(tradeData)
-
-        else addTrade(tradeData)
+                        dispatch(refresh())
+                        dispatch(changePage(user))
+                    })
+            })
     }
 
     return (
@@ -32,19 +42,19 @@ const TradeForm = ({ user, usersCrypto }) => {
                     <Form.Group>
                         <Form.Label>Crypto Sent</Form.Label>
                         <Form.Control as="select" >
-                            {usersCrypto.map(crypto => <option id={crypto.name} onClick={e => selectCryptoSent(e.target.id)}>{crypto.name}</option>)}
+                            {usersCrypto.map((crypto, i) => <option key={i} id={crypto.name} onClick={e => selectCryptoSent(e.target.id)}>{crypto.name}</option>)}
                         </Form.Control>
                     </Form.Group>
 
-                    {cryptoSent !== '' && <Form.Group>
+                    <Form.Group>
                         <Form.Label>Coins Sent</Form.Label>
                         <Form.Control as="input" value={coinsSent} onChange={e => setCoinsSent(e.target.value)} />
-                    </Form.Group>}
+                    </Form.Group>
 
                     <Form.Group>
                         <Form.Label>Crypto Received</Form.Label>
                         <Form.Control as="select" >
-                            {usersCrypto.map(crypto => <option id={crypto.name} onClick={e => selectCryptoReceived(e.target.id)}>{crypto.name}</option>)}
+                            {usersCrypto.map((crypto, i) => <option key={i} id={crypto.name} onClick={e => selectCryptoReceived(e.target.id)}>{crypto.name}</option>)}
                             <option onClick={() => selectOther(true)}>Other</option>
                         </Form.Control>
                     </Form.Group>
@@ -54,10 +64,10 @@ const TradeForm = ({ user, usersCrypto }) => {
                         <Form.Control as="input" value={cryptoReceived} onChange={e => selectCryptoReceived(e.target.value)} />
                     </Form.Group>}
 
-                    {cryptoReceived !== '' && <Form.Group>
+                    <Form.Group>
                         <Form.Label>Coins Received</Form.Label>
                         <Form.Control as="input" value={coinsReceived} onChange={e => setCoinsReceived(e.target.value)} />
-                    </Form.Group>}
+                    </Form.Group>
 
                     <Button variant="primary" type="submit" align="center" onClick={e => submitTrade(e)}>
                         Submit
@@ -68,4 +78,4 @@ const TradeForm = ({ user, usersCrypto }) => {
     )
 }
 
-export default TradeForm
+export default connect()(TradeForm)
