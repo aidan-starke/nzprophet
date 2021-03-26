@@ -8,15 +8,14 @@ import Profit from './Profit'
 
 import TransactionButtons from './TransactionButtons'
 
-const CryptoCard = ({ users }) => {
+const CryptoCard = ({ crypto }) => {
     return (
         <>
             <CardDeck style={{ display: 'flex', flexDirection: 'row' }}>
-                {users.data.map((crypto, i) =>
+                {crypto.usersCrypto.map((crypto, i) =>
                     <Profit crypto={crypto} key={i} />
                 )}
             </CardDeck>
-            <br />
             <TransactionButtons />
         </>
     )
@@ -24,7 +23,7 @@ const CryptoCard = ({ users }) => {
 
 function mapStateToProps(state) {
     return {
-        users: state.users
+        crypto: state.crypto
     }
 }
 
