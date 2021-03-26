@@ -49,27 +49,34 @@ function Profit({ crypto, dispatch }) {
     }
 
     return (
-        <Card style={{ flex: 1, width: '15rem' }}>
-            <Card.Img variant="top" src={src} />
-            <Card.Body>
-                <Card.Title>{name}</Card.Title>
-                {!mounted && <Card.Text>Loading...</Card.Text>}
-                {mounted && <>
-                    <Card.Body>
-                        You originally bought {coinsOwned} {name} for ${investment}.
-                    </Card.Body>
-                    <Card.Body>
-                        Your coins are currently worth ${profitData.value}.
-                    </Card.Body>
-                    <Card.Body>
-                        (${profitData.profit}, {profitData.percentage}% ROI)
-                    </Card.Body>
-                    <Card.Body>
-                        <Card.Link onClick={e => linkHandler(e)}>Transaction History</Card.Link>
-                    </Card.Body>
-                </>}
-            </Card.Body>
-        </Card>
+        <>
+            {coinsOwned !== 0 && <Card style={{ flex: 1, width: '15rem' }}>
+                <Card.Img variant="top" src={src} />
+                <Card.Body>
+                    <Card.Title>{name}</Card.Title>
+                    {!mounted && <Card.Text>Loading...</Card.Text>}
+                    {mounted && <>
+                        {investment !== 0 && <Card.Text>
+                            Your inital investment was ${investment}
+                        </Card.Text>}
+                        <Card.Text>
+                            You own {coinsOwned} coins.
+                    </Card.Text>
+                        <Card.Text>
+                            Your coins are worth ${profitData.value}
+                        </Card.Text>
+                        {investment !== 0 && <Card.Text>
+                            Change from initial investment:
+                        <br />
+                        ${profitData.profit} ({profitData.percentage}%)
+                    </Card.Text>}
+                        <Card.Text>
+                            <Card.Link onClick={e => linkHandler(e)}>Transaction History</Card.Link>
+                        </Card.Text>
+                    </>}
+                </Card.Body>
+            </Card>}
+        </>
     )
 }
 
