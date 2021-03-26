@@ -22,10 +22,4 @@ const Navigation = ({ dispatch }) => {
     )
 }
 
-function mapStateToProps(state) {
-    return {
-        users: state.users
-    }
-}
-
-export default connect(mapStateToProps)(Navigation)
+export default connect()(Navigation)
