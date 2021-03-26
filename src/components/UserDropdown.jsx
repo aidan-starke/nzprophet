@@ -6,7 +6,7 @@ import { NavDropdown } from 'react-bootstrap'
 
 import { getUsers, getCrypto } from '../api'
 
-import { changePage, setUser, setUserData, refresh } from '../actions'
+import { changePage, setUser, setUsersCrypto, refresh } from '../actions'
 
 const UserDropdown = ({ dispatch }) => {
     const [usernames, setUsernames] = useState([])
@@ -25,7 +25,7 @@ const UserDropdown = ({ dispatch }) => {
 
         getCrypto(e.target.id)
             .then(res => {
-                dispatch(setUserData(res))
+                dispatch(setUsersCrypto(res))
                 dispatch(setUser(e.target.id))
                 dispatch(changePage(e.target.id))
             })
