@@ -5,20 +5,20 @@ dotenv.config()
 let baseUrl
 
 if (process.env.NODE_ENV === 'development')
-    baseUrl = 'http://localhost:3000'
+    baseUrl = 'http://localhost:3000/api/v1'
 else if (process.env.NODE_ENV === 'production')
-    baseUrl = 'https://nzprophet.herokuapp.com'
+    baseUrl = 'https://nzprophet.herokuapp.com/api/v1'
 
 export function getUsers() {
     return axios
-        .get(`${baseUrl}/api/v1/users`)
+        .get(`${baseUrl}/users`)
         .then(res => res.data)
         .catch(err => console.log(err.message))
 }
 
 export function getCrypto(name) {
     return axios
-        .get(`${baseUrl}/api/v1/crypto`, {
+        .get(`${baseUrl}/crypto`, {
             params: { name }
         })
         .then(res => res.data)
@@ -36,12 +36,18 @@ export function getPrice(crypto) {
 
 export function addTrade(data) {
     return axios
-        .put(`${baseUrl}/api/v1/crypto/trade`, data)
+        .post(`${baseUrl}/transactions/trade`, data)
         .catch(err => console.log(err.message))
 }
 
-export function addTradeNewCoin(data) {
+export function getTrades(user, crypto) {
     return axios
-        .post(`${baseUrl}/api/v1/crypto/trade/new`, data)
+        .get(`${baseUrl}/transactions`, {
+            params: {
+                user,
+                crypto
+            }
+        })
+        .then(res => res.data)
         .catch(err => console.log(err.message))
 }
