@@ -13,7 +13,7 @@ import CryptoCard from './components/CryptoCard'
 import TradeForm from './components/TradeForm'
 import Transactions from './components/Transactions'
 
-function App({ currentPage, users }) {
+function App({ currentPage, users, crypto }) {
   return (
     <Container>
       <Card>
@@ -21,7 +21,7 @@ function App({ currentPage, users }) {
         <Row className="d-flex justify-content-center">
           {currentPage === users.user && <CryptoCard />}
 
-          {currentPage === 'trade' && <TradeForm user={users.user} usersCrypto={users.data} />}
+          {currentPage === 'trade' && <TradeForm user={users.user} usersCrypto={crypto.usersCrypto} />}
 
           {currentPage === 'transactions' && <Transactions />}
         </Row>
@@ -34,7 +34,8 @@ function App({ currentPage, users }) {
 function mapStateToProps(state) {
   return {
     currentPage: state.currentPage,
-    users: state.users
+    users: state.users,
+    crypto: state.crypto
   }
 }
 
