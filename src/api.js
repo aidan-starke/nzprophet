@@ -2,7 +2,7 @@ import axios from 'axios'
 import dotenv from 'dotenv'
 dotenv.config()
 
-let baseUrl = 'https://nzprophet.herokuapp.com'
+let baseUrl = 'https://nzprophet.herokuapp.com/api/v1'
 
 export function getUsers() {
     return axios
