@@ -1,43 +1,26 @@
-import React, { useEffect, useState } from 'react'
-
-import { connect } from 'react-redux'
+import React from 'react'
 
 import { CardDeck } from 'react-bootstrap'
 
-import { getTrades } from '../api'
+import { connect } from 'react-redux'
 
-import Transaction from './Transaction'
+import TradeForm from './TradeForm'
+import BuyForm from './BuyForm'
 
-function Transactions({ crypto, users }) {
-    const [transactionData, setTransactionData] = useState([])
-    const [mounted, toggle] = useState(false)
-
-    const { currentCrypto } = crypto
-    const { user } = users
-
-    useEffect(() => {
-        getTrades(user, currentCrypto)
-            .then(data => {
-                setTransactionData(data)
-                toggle(true)
-            })
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
+const Transactions = ({ crypto, users }) => {
     return (
         <CardDeck style={{ display: 'flex', flexDirection: 'row' }}>
-            {mounted && transactionData.map((data, i) =>
-                <Transaction transactionData={data} key={i} />
-            )}
+            <TradeForm user={users.user} usersCrypto={crypto.usersCrypto} />
+            <BuyForm user={users.user} usersCrypto={crypto.usersCrypto} />
         </CardDeck>
     )
 }
 
-function MapStateToProps(state) {
+function mapStateToProps(state) {
     return {
-        crypto: state.crypto,
-        users: state.users
+        users: state.users,
+        crypto: state.crypto
     }
 }
 
-export default connect(MapStateToProps)(Transactions)
+export default connect(mapStateToProps)(Transactions)

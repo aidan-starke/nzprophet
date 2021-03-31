@@ -13,14 +13,15 @@ import { viewTransactions, changePage } from '../actions'
 function Profit({ crypto, dispatch }) {
     const [profitData, setProfitData] = useState({})
     const [mounted, toggle] = useState(false)
+    const [price, setPrice] = useState(0)
 
     const { name, investment, coinsOwned, src } = crypto
 
     useEffect(() => {
-        toggle(false)
-
         getPrice(name)
             .then(p => {
+                setPrice(p['NZD'])
+
                 var currentValue = p['NZD'] * coinsOwned
                 var roundedValue = roundTo(currentValue, 2)
 
@@ -45,7 +46,7 @@ function Profit({ crypto, dispatch }) {
         e.preventDefault()
 
         dispatch(viewTransactions(name))
-        dispatch(changePage('transactions'))
+        dispatch(changePage('transactionHistory'))
     }
 
     return (
@@ -56,6 +57,7 @@ function Profit({ crypto, dispatch }) {
                     <Card.Title>{name}</Card.Title>
                     {!mounted && <Card.Text>Loading...</Card.Text>}
                     {mounted && <>
+                        <Card.Subtitle className="mb-2 text-muted">Current Price: ${roundTo(price, 4)}</Card.Subtitle>
                         {investment !== 0 && <Card.Text>
                             Your inital investment was ${investment}
                         </Card.Text>}

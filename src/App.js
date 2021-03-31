@@ -10,10 +10,10 @@ import { Card, Container, Row } from 'react-bootstrap'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
 import CryptoCard from './components/CryptoCard'
-import TradeForm from './components/TradeForm'
 import Transactions from './components/Transactions'
+import TransactionHistory from './components/TransactionHistory'
 
-function App({ currentPage, users, crypto }) {
+function App({ currentPage, users }) {
   return (
     <Container>
       <Card>
@@ -21,9 +21,9 @@ function App({ currentPage, users, crypto }) {
         <Row className="d-flex justify-content-center">
           {currentPage === users.user && <CryptoCard />}
 
-          {currentPage === 'trade' && <TradeForm user={users.user} usersCrypto={crypto.usersCrypto} />}
-
           {currentPage === 'transactions' && <Transactions />}
+
+          {currentPage === 'transactionHistory' && <TransactionHistory />}
         </Row>
         <Footer />
       </Card>
@@ -34,8 +34,7 @@ function App({ currentPage, users, crypto }) {
 function mapStateToProps(state) {
   return {
     currentPage: state.currentPage,
-    users: state.users,
-    crypto: state.crypto
+    users: state.users
   }
 }
 

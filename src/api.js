@@ -2,7 +2,7 @@ import axios from 'axios'
 import dotenv from 'dotenv'
 dotenv.config()
 
-let baseUrl = 'https://nzprophet.herokuapp.com/api/v1'
+let baseUrl = 'http://localhost:3000/api/v1'
 
 export function getUsers() {
     return axios
@@ -44,5 +44,15 @@ export function getTrades(user, crypto) {
             }
         })
         .then(res => res.data)
+        .catch(err => console.log(err.message))
+}
+
+export function addBuy(data) {
+    return axios
+        .post(`${baseUrl}/transactions/buy`, {
+            params: {
+                data
+            }
+        })
         .catch(err => console.log(err.message))
 }

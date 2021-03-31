@@ -2,13 +2,13 @@ import React from 'react'
 
 import { connect } from 'react-redux'
 
-import { CardDeck } from 'react-bootstrap'
+import { CardDeck, Button } from 'react-bootstrap'
 
 import Profit from './Profit'
 
-import TransactionButtons from './TransactionButtons'
+import { changePage } from '../actions'
 
-const CryptoCard = ({ crypto }) => {
+const CryptoCard = ({ crypto, dispatch }) => {
     return (
         <>
             <CardDeck style={{ display: 'flex', flexDirection: 'row' }}>
@@ -16,7 +16,9 @@ const CryptoCard = ({ crypto }) => {
                     <Profit crypto={crypto} key={i} />
                 )}
             </CardDeck>
-            <TransactionButtons />
+            <Button variant="secondary" type="submit" onClick={() => dispatch(changePage('transactions'))}>
+                New Transaction?
+            </Button>
         </>
     )
 }
