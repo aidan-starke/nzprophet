@@ -4,20 +4,26 @@ import { connect } from 'react-redux'
 
 import { Card } from 'react-bootstrap'
 
-import { getPrice } from '../api'
+import { getPrice, getTrades } from '../api'
 
 import { roundTo } from '../helpers'
 
 import { viewTransactions, changePage } from '../actions'
 
-function Profit({ crypto, dispatch }) {
+function Profit({ crypto, dispatch, user }) {
     const [profitData, setProfitData] = useState({})
     const [mounted, toggle] = useState(false)
     const [price, setPrice] = useState(0)
+    const [transactionsExist, setTransactionsExist] = useState(false)
 
     const { name, investment, coinsOwned, src } = crypto
 
     useEffect(() => {
+        getTrades(user, name)
+            .then(res => {
+                if (res.length > 0) setTransactionsExist(true)
+            })
+
         getPrice(name)
             .then(p => {
                 setPrice(p['NZD'])
@@ -58,6 +64,7 @@ function Profit({ crypto, dispatch }) {
                     {!mounted && <Card.Text>Loading...</Card.Text>}
                     {mounted && <>
                         <Card.Subtitle className="mb-2 text-muted">Current Price: ${roundTo(price, 4)}</Card.Subtitle>
+                        <br />
                         {investment !== 0 && <Card.Text>
                             Your inital investment was ${investment}
                         </Card.Text>}
@@ -72,9 +79,9 @@ function Profit({ crypto, dispatch }) {
                         <br />
                         ${profitData.profit} ({profitData.percentage}%)
                     </Card.Text>}
-                        <Card.Text>
+                        {transactionsExist && <Card.Text>
                             <Card.Link onClick={e => linkHandler(e)}>Transaction History</Card.Link>
-                        </Card.Text>
+                        </Card.Text>}
                     </>}
                 </Card.Body>
             </Card>}
@@ -82,5 +89,11 @@ function Profit({ crypto, dispatch }) {
     )
 }
 
-export default connect()(Profit)
+function mapStateToProps(state) {
+    return {
+        user: state.users.user
+    }
+}
+
+export default connect(mapStateToProps)(Profit)
 

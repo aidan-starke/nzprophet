@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react'
 
 import { connect } from 'react-redux'
 
-import { CardDeck } from 'react-bootstrap'
+import { CardDeck, Button } from 'react-bootstrap'
 
 import { getTrades } from '../api'
 
 import Transaction from './Transaction'
 
-function TransactionHistory({ crypto, users }) {
+import { changePage } from '../actions'
+
+function TransactionHistory({ crypto, users, dispatch }) {
     const [transactionData, setTransactionData] = useState([])
     const [mounted, toggle] = useState(false)
 
@@ -25,19 +27,22 @@ function TransactionHistory({ crypto, users }) {
     }, [])
 
     return (
-        <CardDeck style={{ display: 'flex', flexDirection: 'row' }}>
+        <CardDeck style={{ display: 'flex', flexDirection: 'column' }}>
             {mounted && transactionData.map((data, i) =>
                 <Transaction transactionData={data} key={i} />
             )}
+            <Button variant="secondary" type="submit" onClick={() => dispatch(changePage('Demo'))}>
+                Return
+            </Button>
         </CardDeck>
     )
 }
 
-function MapStateToProps(state) {
+function mapStateToProps(state) {
     return {
         crypto: state.crypto,
         users: state.users
     }
 }
 
-export default connect(MapStateToProps)(TransactionHistory)
+export default connect(mapStateToProps)(TransactionHistory)

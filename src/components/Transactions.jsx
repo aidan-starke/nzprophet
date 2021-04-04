@@ -9,10 +9,12 @@ import BuyForm from './BuyForm'
 
 const Transactions = ({ crypto, users }) => {
     return (
-        <CardDeck style={{ display: 'flex', flexDirection: 'row' }}>
-            <TradeForm user={users.user} usersCrypto={crypto.usersCrypto} />
-            <BuyForm user={users.user} usersCrypto={crypto.usersCrypto} />
-        </CardDeck>
+        <>
+            <CardDeck style={{ display: 'flex', flexDirection: 'row' }}>
+                <TradeForm user={users.user} usersCrypto={crypto.usersCrypto} />
+                <BuyForm user={users.user} usersCrypto={crypto.usersCrypto} />
+            </CardDeck>
+        </>
     )
 }
 

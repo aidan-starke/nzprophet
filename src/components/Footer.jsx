@@ -6,7 +6,7 @@ const FooterComponent = () => {
     return (
         <Card.Footer>
             <Card.Text align='center'>
-                Developed by Aidan Starke - <Card.Link href='https://github.com/aidan-starke/prophet'>https://github.com/aidan-starke</Card.Link>
+                Developed by <Card.Link href='https://www.facebook.com/starkemedia'>Starke Media</Card.Link>
             </Card.Text>
             <Card.Text align='center' className="text-muted">
                 Images from <Card.Link href='https://cryptologos.cc/'>https://cryptologos.cc/</Card.Link>

@@ -12,6 +12,7 @@ import Footer from './components/Footer'
 import CryptoCard from './components/CryptoCard'
 import Transactions from './components/Transactions'
 import TransactionHistory from './components/TransactionHistory'
+import DemoPage from './components/DemoPage'
 
 function App({ currentPage, users }) {
   return (
@@ -19,6 +20,8 @@ function App({ currentPage, users }) {
       <Card>
         <Nav />
         <Row className="d-flex justify-content-center">
+          {currentPage === 'Home' && <DemoPage />}
+
           {currentPage === users.user && <CryptoCard />}
 
           {currentPage === 'transactions' && <Transactions />}
