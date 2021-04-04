@@ -15,6 +15,7 @@ const DemoPage = ({ dispatch }) => {
 
         getCrypto('Demo')
             .then(res => {
+                console.log(res)
                 dispatch(setUsersCrypto(res))
                 dispatch(setUser('Demo'))
                 dispatch(changePage('Demo'))
