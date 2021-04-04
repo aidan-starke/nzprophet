@@ -33,10 +33,9 @@ export function setUser(user) {
     }
 }
 
-export function setUsersCrypto({ username, data }) {
+export function setUsersCrypto({ data }) {
     return {
         type: SET_USERS_CRYPTO,
-        username: username[0].username,
         data
     }
 }
