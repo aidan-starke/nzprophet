@@ -4,26 +4,11 @@ import { Card, Button, Form } from 'react-bootstrap'
 
 import { connect } from 'react-redux'
 
-import { addBuy } from '../api'
-
-import { refresh, changePage } from '../actions'
-
-const TradeForm = ({ user, usersCrypto, dispatch }) => {
+const TradeForm = ({ usersCrypto }) => {
     const [cryptoBought, selectCryptoBought] = useState('')
     const [coinsBought, setCoinsBought] = useState('')
     const [invested, setInvestment] = useState('')
     const [other, selectOther] = useState(false)
-
-    function submitTrade(e) {
-        e.preventDefault()
-
-        const tradeData = { user, cryptoBought, coinsBought, invested }
-
-        addBuy(tradeData)
-
-        dispatch(refresh())
-        dispatch(changePage(user))
-    }
 
     return (
         <Card className="justify-content-center" width="50rem">
@@ -53,7 +38,7 @@ const TradeForm = ({ user, usersCrypto, dispatch }) => {
                         <Form.Control as="input" value={invested} onChange={e => setInvestment(e.target.value)} />
                     </Form.Group>
 
-                    <Button variant="primary" type="submit" align="center" onClick={e => submitTrade(e)}>
+                    <Button variant="primary" type="submit" align="center">
                         Submit
                     </Button>
                 </Form>

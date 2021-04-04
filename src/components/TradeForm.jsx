@@ -4,35 +4,13 @@ import { Card, Button, Form } from 'react-bootstrap'
 
 import { connect } from 'react-redux'
 
-import { getPrice, addTrade } from '../api'
-
-import { refresh, changePage } from '../actions'
-
-const TradeForm = ({ user, usersCrypto, dispatch }) => {
+const TradeForm = ({ usersCrypto }) => {
+    // eslint-disable-next-line no-unused-vars
     const [cryptoSent, selectCryptoSent] = useState('')
     const [coinsSent, setCoinsSent] = useState('')
     const [cryptoReceived, selectCryptoReceived] = useState('')
     const [coinsReceived, setCoinsReceived] = useState('')
     const [other, selectOther] = useState(false)
-
-    function submitTrade(e) {
-        e.preventDefault()
-
-        getPrice(cryptoSent)
-            .then(p => {
-                var coinsSentValue = p['NZD'] * coinsSent
-                getPrice(cryptoReceived)
-                    .then(p => {
-                        var coinsReceivedValue = p['NZD'] * coinsReceived
-                        const tradeData = { user, cryptoSent, coinsSent, cryptoReceived, coinsReceived, coinsSentValue, coinsReceivedValue }
-
-                        addTrade(tradeData)
-
-                        dispatch(refresh())
-                        dispatch(changePage(user))
-                    })
-            })
-    }
 
     return (
         <Card className="justify-content-center" width="50rem">
@@ -69,7 +47,7 @@ const TradeForm = ({ user, usersCrypto, dispatch }) => {
                         <Form.Control as="input" value={coinsReceived} onChange={e => setCoinsReceived(e.target.value)} />
                     </Form.Group>
 
-                    <Button variant="primary" type="submit" align="center" onClick={e => submitTrade(e)}>
+                    <Button variant="primary" type="submit" align="center">
                         Submit
                     </Button>
                 </Form>
