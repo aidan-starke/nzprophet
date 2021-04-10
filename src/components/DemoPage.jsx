@@ -23,7 +23,7 @@ const DemoPage = ({ dispatch }) => {
     }
     return (
         <Card>
-            <Card.Img variant="top" src='./tool.png' />
+            <Card.Img variant="top" src='./fade.gif' style={{ width: '500px', margin: 'auto' }} />
             <Card.Text align='center'>
                 Welcome to the demo version of my personal app!
             </Card.Text>
